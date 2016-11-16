@@ -12,7 +12,7 @@ len(str(print("{:<15} {:<15} | {:<10} {:<10} {:<10} {:<10}".format('Stats:', '',
 print("{:=<15} {:=<15} | {:=<10} {:=<10} {:=<10} {:=<10}" .format("", "", "", "", "", ""))
 
 i = 1
-for key, value in my_dict.items():
+for key, value in my_dict.items(), :
     i += 1
 
     if i == 2:
