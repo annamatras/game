@@ -34,3 +34,6 @@ for key, value in my_dict.items(), :
 #http://stackoverflow.com/questions/19916861/how-can-i-print-a-dictionary-in-table-format
 #http://stackoverflow.com/questions/16189546/print-out-dictionary-in-a-table-format
 #http://stackoverflow.com/questions/14993049/how-to-format-a-dict-of-lists-as-a-table
+
+
+#http://stackoverflow.com/questions/7392779/is-it-possible-to-print-a-string-at-a-certain-screen-position-inside-idle
