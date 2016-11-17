@@ -18,7 +18,7 @@ def user_life(life=15, operation=0):
 
 
 def stats():
-    print('God of luck gave you your stats:')
+    print('GOD OF LUCK gave you your stats:')
     stats = inside_stats_generate()
     for i in range(len(stats)):
         print('{} {}' .format(stats[i][0], stats[i][1]))
@@ -39,9 +39,14 @@ def inside_stats_ask(stats=stats):
         if reroll == 'y':
             stats()
         elif reroll == 'n':
-            if condition:
-                pass
+            if (stats[0][1] > 15):
+                print('So you\'re tought huh?')
+            if (stats[1][1] > 15):
+                print('Where is my wallet?')
+            if (stats[2][1] > 15):
+                print('So you\'re hard to kill, it seems.')
             return stats
         else:
             print('Try again')
             inside_stats_ask()
+print(stats())
