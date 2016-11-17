@@ -1,8 +1,8 @@
-item_name,count,type, weight
-ruby,3,Clothes,3
+item_name,count,type,weight
 rope,12,Clothes,5
-sword,1,Weapons,8
+life potion,8,Other,2
 line,2,Other,3
-drugs,1,Other,2
-life potion,4,Other,1
-energy potion,2,Other,1
+drugs,4,Other,8
+sword,1,Weapons,8
+ruby,3,Clothes,3
+energy potion,4,Other,2
