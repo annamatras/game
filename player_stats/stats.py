@@ -26,31 +26,51 @@ def stats():
 
 
 def inside_stats_generate():
-    st = [['Str:', 10 + random.randint(0, 10)],
-          ['Agi:', 10 + random.randint(0, 10)],
-          ['Dex:', 10 + random.randint(0, 10)]]
+    st = [['STRENGHT', 10 + random.randint(0, 10)],
+          ['AGILITY:', 10 + random.randint(0, 10)],
+          ['DEXTERITY:', 10 + random.randint(0, 10)],
+          ['WILLPOWER', 10 + random.randint(0, 10)],
+          ['CHARISMA', 10 + random.randint(0, 10)],
+          ['WISDOM', 10 + random.randint(0, 10)],
+          ['LUCK', 10 + random.randint(0, 10)]]
     return st
 
 
 def inside_stats_ask(st):
     reroll = input('Reroll? (y/n)')
     reroll = reroll.lower()
+
     if reroll == 'y':
-        #  st =[]
-        stats()
+        return stats()
+
     elif reroll == 'n':
-        if (st[0][1] > 15):
-            print('So you\'re tought huh?')
-            return st
-        if (st[1][1] > 15):
-            print('Where is my wallet?')
-            return st
-        if (st[2][1] > 15):
-            print('So you\'re hard to kill, it seems.')
-            return st
+
+        if (st[0][1] > 16):
+            print('Str is over 16! So you\'re tought huh...')
+
+        if (st[1][1] > 16):
+            print('Agi is over 16! Where is my wallet...')
+
+        if (st[2][1] > 16):
+            print('Dex is over 16! So you\'re hard to kill, it seems.')
+
+        if (st[3][1] > 16):
+            print('Willpower is over 16! So you\'re resistant to psychic \
+            attacks.')
+
+        if (st[4][1] > 16):
+            print('Charisma is over 16! You\'ll be alright people like you.')
+
+        if (st[5][1] > 16):
+            print('Wisdom is over 16! Profesor? smart ass huh.')
+
+        if (st[6][1] > 16):
+            print('Luck is over 16! Lucky bastard!')
+
         return st
+
     else:
         print('Try again')
-        inside_stats_ask()
+        return inside_stats_ask()
 print(stats())
 print(user_life())
