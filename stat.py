@@ -1,6 +1,3 @@
-import random
-
-
 def user_name():
     name = input('What\'s your in game nick? (max 8 characters)')
     if len(name) > 8:
@@ -32,7 +29,8 @@ def inside_stats_generate():
           ['WILLPOWER', 10 + random.randint(0, 10)],
           ['CHARISMA', 10 + random.randint(0, 10)],
           ['WISDOM', 10 + random.randint(0, 10)],
-          ['LUCK', 10 + random.randint(0, 10)]]
+          ['LUCK', 10 + random.randint(0, 10)],
+          ['LIFES', 10 + random.randint(0, 10)]]
     return st
 
 
@@ -72,5 +70,5 @@ def inside_stats_ask(st):
     else:
         print('Try again')
         return inside_stats_ask()
-# print(stats())
+# stats()
 # print(user_life())
