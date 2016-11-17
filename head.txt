@@ -1,0 +1,31 @@
+LL       OOOOO   SSSSS  TTTTTTT    IIIII NN   NN      AAA      MM    MM   AAA   ZZZZZ EEEEEEE     OOOOO  FFFFFFF     CCCCC   OOOOO  DDDDD   EEEEEEE             
+LL      OO   OO SS        TTT       III  NNN  NN     AAAAA     MMM  MMM  AAAAA     ZZ EE         OO   OO FF         CC    C OO   OO DD  DD  EE                  
+LL      OO   OO  SSSSS    TTT       III  NN N NN    AA   AA    MM MM MM AA   AA   ZZ  EEEEE      OO   OO FFFF       CC      OO   OO DD   DD EEEEE               
+LL      OO   OO      SS   TTT       III  NN  NNN    AAAAAAA    MM    MM AAAAAAA  ZZ   EE         OO   OO FF         CC    C OO   OO DD   DD EE      ... ... ... 
+LLLLLLL  OOOO0   SSSSS    TTT      IIIII NN   NN    AA   AA    MM    MM AA   AA ZZZZZ EEEEEEE     OOOO0  FF          CCCCC   OOOO0  DDDDDD  EEEEEEE ... ... ... 
+                                                                                                                                                                
+
+
+\                           /                           
+ \                         /
+  \                       /
+   ]                     [    ,'|
+   ]                     [   /  |
+   ]___               ___[ ,'   |
+   ]  ]\             /[  [ |:   |
+   ]  ] \           / [  [ |:   |
+   ]  ]  ]         [  [  [ |:   |
+   ]  ]  ]__     __[  [  [ |:   |
+   ]  ]  ] ]\ _ /[ [  [  [ |:   |
+   ]  ]  ] ] (#) [ [  [  [ :===='
+   ]  ]  ]_].nHn.[_[  [  [
+   ]  ]  ]  HHHHH. [  [  [
+   ]  ] /   `HH("N  \ [  [
+   ]__]/     HHH  "  \[__[
+   ]         NNN         [
+   ]         N/"         [
+   ]         N H         [
+  /          N            \
+ /           q,            \
+/                           \
+
