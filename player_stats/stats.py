@@ -32,7 +32,8 @@ def inside_stats_generate():
           ['WILLPOWER', 10 + random.randint(0, 10)],
           ['CHARISMA', 10 + random.randint(0, 10)],
           ['WISDOM', 10 + random.randint(0, 10)],
-          ['LUCK', 10 + random.randint(0, 10)]]
+          ['LUCK', 10 + random.randint(0, 10)],
+          ['LIFE', 15 + random.randint(0, 10)]]
     return st
 
 
