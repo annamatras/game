@@ -33,13 +33,14 @@ def display_help():
 # def start_game():
 
 def main():
+    os.system("clear")
     while True:
         display_head()
         cprint("""
-            1.Play game
-            2.Help page
-            3.Credits
-            4.Exit
+                                                      1.Play game
+                                                      2.Help page
+                                                      3.Credits
+                                                      4.Exit
             """, attrs=['bold'])
         answer = input("What would you like to do?")
         if answer == "1":
