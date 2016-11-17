@@ -1,19 +1,52 @@
 import random
-print("""
-I am thinking of a 3-digit number. Try to guess what it is.
+import os
+from termcolor import colored, cprint
 
-Here are some clues:
 
-When I say:	That means:
+os.system('clear')
 
-  Cold	   No digit is correct.
+cprint("""
+                VERY SCARY GUESS NUMBER GAME
 
-  Warm     One digit is correct but in the wrong position.
+
+""", "red", attrs=['bold'])
+
+
+
+cprint("""
+                            ,-.
+       ___,---.__          /'|`\          __,---,___
+    ,-'    \`    `-.____,-'  |  `-.____,-'    //    `-.
+  ,'        |           ~'\     /`~           |        `.
+ /      ___//              `. ,'          ,  , \___      /
+|    ,-'   `-.__   _         |        ,    __,-'   `-.    |
+|   /          /\_  `   .    |    ,      _/\          \   |
+\  |           \ \`-.___ \   |   / ___,-'/ /           |  /
+ \  \           | `._   `//  |  //'   _,' |           /  /
+  `-.\         /'  _ `---'' , . ``---' _  `\         /,-'
+     ``       /     \    ,='/ \`=.    /     \       ''
+             |__   /|\_,--.,-.--,--._/|\   __|
+             /  `./  //`\ |  |  | /,//' \,'  /
+            /   /     ||--+--|--+-/-|     \   /
+           |   |     /'\_\_\ | /_/_/`\     |   |
+            \   \__, \_     `~'     _/ .__/   /
+             `-._,-'   `-._______,-'   `-._,-'
+
+""", "yellow", attrs=['bold'])
+
+cprint("""
+If you want to pass you codecool exams, try with me!
+Guess the number and complet you education...
+""", "red", attrs=['bold'])
+
+cprint("""I am thinking of a 3-digit number. Try to guess what it is.
 
   Hot      One digit is correct and in the right position.
+  Warm     One digit is correct but in the wrong position.
+  Cold	   Digit is not correct.
 
 I have thought up a number. You have 10 guesses to get it.
-""")
+""", "yellow", attrs=['bold'])
 
 
 def try_again():
@@ -28,12 +61,12 @@ def try_again():
 
 def check_number(user_number, user_numbers, secrets):
     for secret in secrets:
-        # print('Comparing user %s with secret %s' % (user_number, secret))
         if user_number == secret:
             if user_numbers.index(user_number) == secrets.index(secret):
                 return "Hot"
             else:
                 return "Warm"
+
     return "Cold"
 
 
@@ -50,7 +83,6 @@ def print_results(results):
     for result in results:
         if result == 'Cold':
             print(result, " ", end="")
-
     print("")
 
 
@@ -59,34 +91,33 @@ def guess_game():
     user_numbers = []
     answer = ""
     count = 0
-
     while len(number) < 3:
         digit = random.randint(0, 9)
         if (digit == 0 and len(number) < 1) or (digit in number):
             continue
         else:
             number.append(digit)
-    number = [1, 2, 3]
     print(number)
 
-    while user_numbers != number:
+    while answer != number:
         count += 1
         user_nr = []
-        secret_nr = []
         results = []
         answer = input("Guess #%d:" % count)
         user_numbers = [int(answer[0]), int(answer[1]), int(answer[2])]
 
         for user_number in user_numbers:
             results.append(check_number(user_number, user_numbers, number))
-
         print_results(results)
 
         if count == 10:
             print("You have no more guesses!")
+            print("Number:", number)
             try_again()
 
-    print("Number:", number)
-
+        else:
+            print("Win!")
+            count = 0
+            try_again()
 
 guess_game()
