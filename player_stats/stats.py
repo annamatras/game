@@ -10,10 +10,10 @@ def user_name():
         return name
 
 
-def user_life(life=15, operation=0):
-    life_list = ['Life:', life]
-    life_list[1] = life_list[1] + (operation)
-    return life_list
+# def user_life(life=15, operation=0):
+#     life_list = ['Life:', life]
+#     life_list[1] = life_list[1] + (operation)
+#     return life_list
 
 
 def stats():
@@ -32,7 +32,8 @@ def inside_stats_generate():
           ['WILLPOWER', 10 + random.randint(0, 10)],
           ['CHARISMA', 10 + random.randint(0, 10)],
           ['WISDOM', 10 + random.randint(0, 10)],
-          ['LUCK', 10 + random.randint(0, 10)]]
+          ['LUCK', 10 + random.randint(0, 10)],
+          ['LIFE', 15 + random.randint(0, 10)]]
     return st
 
 
