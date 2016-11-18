@@ -2,18 +2,6 @@ import random
 import sys
 from termcolor import colored, cprint
 import os
-# Clear screen
-def getch():
-    import sys, tty, termios
-    fd = sys.stdin.fileno()
-    old_settings = termios.tcgetattr(fd)
-    try:
-        tty.setraw(sys.stdin.fileno())
-        ch = sys.stdin.read(1)
-    finally:
-        termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
-    return ch
-
 
 def display_head():
     x = open("head.txt", "r")
@@ -30,9 +18,7 @@ def display_help():
     for line in x:
         print(line, end='')
 
-# def start_game():
-
-def main():
+def menu():
     os.system("clear")
     while True:
         display_head()
@@ -44,23 +30,19 @@ def main():
             """, attrs=['bold'])
         answer = input("What would you like to do?")
         if answer == "1":
-            start_game()
+            break
         elif answer == "2":
             os.system("clear")
             display_help()
             input("\nPress any key for back to menu.")
-            os.system("clear")
-            main()
+            menu()
         elif answer == "3":
             os.system("clear")
             display_credits()
             input("\nPress any key for back to menu.")
-            os.system("clear")
-            main()
+            menu()
         elif answer == "4":
             cprint("\n Goodbye!\n", "red", attrs=['bold'])
             quit()
         elif answer != "":
             cprint("\n Wrong input. Try again!", "green")
-
-main()

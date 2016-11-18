@@ -1,6 +1,3 @@
-import random
-
-
 def user_name():
     name = input('What\'s your in game nick? (max 8 characters)')
     if len(name) > 8:
@@ -33,7 +30,7 @@ def inside_stats_generate():
           ['CHARISMA', 10 + random.randint(0, 10)],
           ['WISDOM', 10 + random.randint(0, 10)],
           ['LUCK', 10 + random.randint(0, 10)],
-          ['LIFE', 15 + random.randint(0, 10)]]
+          ['LIFES', 10 + random.randint(0, 10)]]
     return st
 
 
@@ -57,7 +54,7 @@ def inside_stats_ask(st):
 
         if (st[3][1] > 16):
             print('Willpower is over 16! So you\'re resistant to psychic \
-attacks.')
+            attacks.')
 
         if (st[4][1] > 16):
             print('Charisma is over 16! You\'ll be alright people like you.')
@@ -73,5 +70,5 @@ attacks.')
     else:
         print('Try again')
         return inside_stats_ask()
-# print(stats())
+# stats()
 # print(user_life())

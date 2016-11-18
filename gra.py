@@ -2,53 +2,6 @@ import random
 import os
 from termcolor import colored, cprint
 
-
-os.system('clear')
-
-cprint("""
-                VERY SCARY GUESS NUMBER GAME
-
-
-""", "red", attrs=['bold'])
-
-
-
-cprint("""
-                            ,-.
-       ___,---.__          /'|`\          __,---,___
-    ,-'    \`    `-.____,-'  |  `-.____,-'    //    `-.
-  ,'        |           ~'\     /`~           |        `.
- /      ___//              `. ,'          ,  , \___      /
-|    ,-'   `-.__   _         |        ,    __,-'   `-.    |
-|   /          /\_  `   .    |    ,      _/\          \   |
-\  |           \ \`-.___ \   |   / ___,-'/ /           |  /
- \  \           | `._   `//  |  //'   _,' |           /  /
-  `-.\         /'  _ `---'' , . ``---' _  `\         /,-'
-     ``       /     \    ,='/ \`=.    /     \       ''
-             |__   /|\_,--.,-.--,--._/|\   __|
-             /  `./  //`\ |  |  | /,//' \,'  /
-            /   /     ||--+--|--+-/-|     \   /
-           |   |     /'\_\_\ | /_/_/`\     |   |
-            \   \__, \_     `~'     _/ .__/   /
-             `-._,-'   `-._______,-'   `-._,-'
-
-""", "yellow", attrs=['bold'])
-
-cprint("""
-If you want to pass you codecool exams, try with me!
-Guess the number and complet you education...
-""", "red", attrs=['bold'])
-
-cprint("""I am thinking of a 3-digit number. Try to guess what it is.
-
-  Hot      One digit is correct and in the right position.
-  Warm     One digit is correct but in the wrong position.
-  Cold	   Digit is not correct.
-
-I have thought up a number. You have 10 guesses to get it.
-""", "yellow", attrs=['bold'])
-
-
 def try_again():
     again = 'y'
     while again == 'y' or again == 'Y':
@@ -87,6 +40,53 @@ def print_results(results):
 
 
 def guess_game():
+    os.system('clear')
+
+    cprint("""
+                    VERY SCARY GUESS NUMBER GAME
+
+
+    """, "red", attrs=['bold'])
+
+
+
+    cprint("""
+                                ,-.
+           ___,---.__          /'|`\          __,---,___
+        ,-'    \`    `-.____,-'  |  `-.____,-'    //    `-.
+      ,'        |           ~'\     /`~           |        `.
+     /      ___//              `. ,'          ,  , \___      /
+    |    ,-'   `-.__   _         |        ,    __,-'   `-.    |
+    |   /          /\_  `   .    |    ,      _/\          \   |
+    \  |           \ \`-.___ \   |   / ___,-'/ /           |  /
+     \  \           | `._   `//  |  //'   _,' |           /  /
+      `-.\         /'  _ `---'' , . ``---' _  `\         /,-'
+         ``       /     \    ,='/ \`=.    /     \       ''
+                 |__   /|\_,--.,-.--,--._/|\   __|
+                 /  `./  //`\ |  |  | /,//' \,'  /
+                /   /     ||--+--|--+-/-|     \   /
+               |   |     /'\_\_\ | /_/_/`\     |   |
+                \   \__, \_     `~'     _/ .__/   /
+                 `-._,-'   `-._______,-'   `-._,-'
+
+    """, "yellow", attrs=['bold'])
+
+    cprint("""
+    If you want to pass you codecool exams, try with me!
+    Guess the number and complet you education...
+    """, "red", attrs=['bold'])
+
+    cprint("""I am thinking of a 3-digit number. Try to guess what it is.
+
+      Hot      One digit is correct and in the right position.
+      Warm     One digit is correct but in the wrong position.
+      Cold	   Digit is not correct.
+
+    I have thought up a number. You have 10 guesses to get it.
+    """, "yellow", attrs=['bold'])
+
+
+
     number = []
     user_numbers = []
     answer = ""
@@ -98,6 +98,9 @@ def guess_game():
         else:
             number.append(digit)
     print(number)
+    number_str = ""
+    for i in number:
+        number_str = str(number_str) + str(i)
 
     while answer != number:
         count += 1
@@ -111,13 +114,11 @@ def guess_game():
         print_results(results)
 
         if count == 10:
-            print("You have no more guesses!")
-            print("Number:", number)
-            try_again()
-
-        else:
-            print("Win!")
-            count = 0
-            try_again()
-
-guess_game()
+            print("My secret code was ", number)
+            print("You are doomed now!!! ")
+            input()
+            exit()
+        elif answer == number_str:
+            print("You win this time, poor mortal. Now you can take all my gold!")
+            input()
+            exit()
