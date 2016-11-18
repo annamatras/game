@@ -1,5 +1,5 @@
 #xterm -fullscreen -e python3 script.py
-from menu import *
+import pickle
 from challenge import *
 from gra import *
 from stat import *
@@ -11,6 +11,7 @@ BGGREEN ='\033[42m'
 BGBLUE = '\033[44m'
 ENDC = '\033[0m'
 UNDERLINE = '\033[4m'
+save = 0
 
 inv = [['ruby',3,'weapon',2], ['rope',12,'others',2],['cheese',4,'food',5],
     ['shoes',1,'clothes',2], ['armor',1,'clothes',1], ['bow',1,'weapon',3],
@@ -103,6 +104,58 @@ def import_inventory(inventory, filename="import_inventory.csv"):
     for item in inventory.values():
         number_of_items += item
     print("Total number of items: ", number_of_items)
+
+
+def display_head():
+    x = open("head.txt", "r")
+    for line in x:
+        cprint(line, "yellow", end='')
+
+def display_credits():
+    x = open("credits.txt", "r+")
+    for line in x:
+        print(line, end='')
+
+def display_help():
+    x = open("help.txt", "r+")
+    for line in x:
+        print(line, end='')
+
+def menu():
+    global save
+    os.system("clear")
+    while True:
+        display_head()
+        cprint("""
+                                                      1.Play game
+                                                      2.Help page
+                                                      3.Credits
+                                                      4.Load
+                                                      5.Exit
+            """, attrs=['bold'])
+        answer = input("What would you like to do?")
+        if answer == "1":
+            break
+        elif answer == "2":
+            os.system("clear")
+            display_help()
+            input("\nPress any key for back to menu.")
+            menu()
+        elif answer == "3":
+            os.system("clear")
+            display_credits()
+            input("\nPress any key for back to menu.")
+            menu()
+        elif answer == "4":
+            # load()
+            save = 1
+            input("LOAD")
+            return "load"
+        elif answer == "5":
+            cprint("\n Goodbye!\n", "red", attrs=['bold'])
+            quit()
+        elif answer != "":
+            cprint("\n Wrong input. Try again!", "green")
 
 
 def export_inventory(inventory, filename="import_inventory.csv"):
@@ -248,16 +301,53 @@ def ask_name():
     ask += " "*spaces
     return ask
 
+def load(matrix, hero_name, hero_row, hero_col, statistics, inv, stage_number, lives):
+    with open ("save","rb") as handler:
+        matrix = pickle.load(handler)
+        hero_name = pickle.load(handler)
+        hero_row = pickle.load(handler)
+        hero_col = pickle.load(handler)
+        statistics = pickle.load(handler)
+        inv = pickle.load(handler)
+        stage_number = pickle.load(handler)
+        lives = pickle.load(handler)
+        return matrix, hero_name, hero_row, hero_col, statistics, inv, stage_number, lives
+
+def save_game(matrix, hero_name, hero_row, hero_col, statistics, inv, stage_number, lives):
+    with open("save","wb") as handler:
+        pickle.dump(matrix, handler)
+        pickle.dump(hero_name, handler)
+        pickle.dump(hero_row, handler)
+        pickle.dump(hero_col, handler)
+        pickle.dump(statistics, handler)
+        pickle.dump(inv, handler)
+        pickle.dump(stage_number, handler)
+        pickle.dump(lives, handler)
+
+
 #import_inventory(inv)
 def main():
     global lives
-    matrix = import_matrix(1)
-    hero_row, hero_col = 10, 5
+    global save
+    global inv
+    matrix = []
+    hero_name = ""
+    hero_row, hero_col = 0, 0
+    statistics = []
     stage_number = 1
-    menu()
-    hero_name = ask_name()
-    statistics = stats()
-    lives = statistics[7][1]
+    lives = 0
+    if save:
+        (matrix, hero_name, hero_row, hero_col, statistics, inv, stage_number, lives) = load(matrix, hero_name, hero_row, hero_col, statistics, inv, stage_number, lives)
+        save = 0
+    else:
+        matrix = import_matrix(1)
+        hero_row, hero_col = 10, 5
+        odp = menu()
+        if odp == "load":
+            main()
+        hero_name = ask_name()
+        statistics = stats()
+        lives = statistics[7][1]
     while True:
         matrix_d = ret_matrix(matrix, hero_row, hero_col)
         print_matrix(matrix_d)
@@ -315,6 +405,9 @@ def main():
             hero_row += 1
         elif char == "p":
             matrix[hero_row+1][hero_col] = "🞮"
+        elif char == "m":
+            save_game(matrix, hero_name, hero_row, hero_col, statistics, inv, stage_number, lives)
+            main()
         elif (char == "q"):
             break
         else:

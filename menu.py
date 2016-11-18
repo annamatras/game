@@ -19,6 +19,7 @@ def display_help():
         print(line, end='')
 
 def menu():
+    global save
     os.system("clear")
     while True:
         display_head()
@@ -26,7 +27,8 @@ def menu():
                                                       1.Play game
                                                       2.Help page
                                                       3.Credits
-                                                      4.Exit
+                                                      4.Load
+                                                      5.Exit
             """, attrs=['bold'])
         answer = input("What would you like to do?")
         if answer == "1":
@@ -42,6 +44,11 @@ def menu():
             input("\nPress any key for back to menu.")
             menu()
         elif answer == "4":
+            # load()
+            save = 1
+            input("LOAD")
+            return "load"
+        elif answer == "5":
             cprint("\n Goodbye!\n", "red", attrs=['bold'])
             quit()
         elif answer != "":
