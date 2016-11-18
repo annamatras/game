@@ -388,4 +388,5 @@ def main():
         else:
             pass
 
-main()
+if __name__ == "__main__":
+    main()
