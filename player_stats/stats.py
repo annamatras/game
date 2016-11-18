@@ -57,7 +57,7 @@ def inside_stats_ask(st):
 
         if (st[3][1] > 16):
             print('Willpower is over 16! So you\'re resistant to psychic \
-            attacks.')
+attacks.')
 
         if (st[4][1] > 16):
             print('Charisma is over 16! You\'ll be alright people like you.')
