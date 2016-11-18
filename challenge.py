@@ -21,13 +21,6 @@ def check_number(lives):
                                                             my_number))
         input()
         return "won"
-        # again = input("Would you like to play the game once again? (y/n)")
-        # if again == 'y':
-        #     main()
-        # else:
-        #     input("Press any key to exit program")
-        #     os.system('clear')
-        #     quit()
     elif my_number < rand:
         lives -= 1
         if lives < 1:

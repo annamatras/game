@@ -12,6 +12,16 @@ def try_again():
             exit()
 
 
+def game_over():
+    """Displays final graphs for winner"""
+    os.system('clear')
+    x = open("game_over.txt", "r")
+    for line in x:
+        cprint(line, "red", end='')
+    print("You win this time, poor mortal. Now you can take all my gold!")
+    exit()
+
+
 def check_number(user_number, user_numbers, secrets):
     for secret in secrets:
         if user_number == secret:
@@ -119,6 +129,6 @@ def guess_game():
             input()
             exit()
         elif answer == number_str:
-            print("You win this time, poor mortal. Now you can take all my gold!")
+            game_over()
             input()
             exit()

@@ -71,6 +71,14 @@ def display_head():
         cprint(line, "yellow", end='')
 
 
+def game_over():
+    """Displays final graphs for winner"""
+    os.system('clear')
+    x = open("game_over.txt", "r")
+    for line in x:
+        cprint(line, "red", end='')
+    exit()
+
 def display_credits():
     """Displays credits"""
     x = open("credits.txt", "r+")
