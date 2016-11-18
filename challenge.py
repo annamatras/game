@@ -33,11 +33,13 @@ def check_number(lives):
         if lives < 1:
             die()
         print('=> {} is too low\n'.format(my_number))
+        input("Enter")
     elif my_number > rand:
         lives -= 1
         if lives < 1:
             die()
         print('=> {} is too high\n'.format(my_number))
+        input("Enter")
     return lives
 
 my_number = 0

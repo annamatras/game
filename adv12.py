@@ -1,4 +1,3 @@
-#xterm -fullscreen -e python3 script.py
 import pickle
 from challenge import *
 from gra import *
@@ -12,19 +11,9 @@ BGBLUE = '\033[44m'
 ENDC = '\033[0m'
 UNDERLINE = '\033[4m'
 save = 0
-
 inv = [['ruby',3,'weapon',2], ['rope',12,'others',2],['cheese',4,'food',5],
     ['shoes',1,'clothes',2], ['armor',1,'clothes',1], ['bow',1,'weapon',3],
     ['vodka',25,'others',8],['gold coin',20,'others',1],['keys', 2,'others',1]]
-
-def display_inventory(inventory):
-    """ Displays player inventory names and quantities"""
-    number_of_items = 0
-    print("Inventory:")
-    for item, value in inventory.items():
-        print(value, item)
-        number_of_items += value
-    print("Number of items: %d" % number_of_items)
 
 
 def add_to_inventory(inventory, items):
@@ -59,9 +48,6 @@ def print_table(inventory, stage_number, hero_name, statistics, lives, order="em
     for index, item in enumerate(statistics):
         stats.append(statistics[index][0])
         stats_values.append(statistics[index][1])
-    #print("STATS",stats,"VALUES",stats_values)
-    #input()
-    # stats_values = [12, 2, 4, 14, 16, 13, 10]
     for item in sorted_values:
         if count <= 5:
             count += 1
@@ -78,50 +64,29 @@ def print_table(inventory, stage_number, hero_name, statistics, lives, order="em
     print("Total number of items:", number_of_items)
 
 
-def import_inventory(inventory, filename="import_inventory.csv"):
-    """Imports inventory from file and updates it with current inventory"""
-    number_of_items = 0
-    with open(filename, "r", encoding="utf-8") as handler:
-        items_list = handler.readlines()
-        del items_list[0]  #item_name, counts - descriptive first line of file
-    for item in items_list:
-        str_without_newline = item.replace("\n","")
-        splitted_list = str_without_newline.split(",")
-        key = splitted_list[0]
-        if splitted_list[1].isdigit():
-            value = int(splitted_list[1])
-        else:
-            print("Problem with parsing {}.".format(filename))
-            exit()
-        if key in inventory:
-            inventory[key] = int(inventory[key])+int(value)
-            continue
-        to_add=(key, value)
-        inventory.update([to_add])
-    print("\nInventory:\n")
-    for key, value in inventory.items():
-        print(key, value)
-    for item in inventory.values():
-        number_of_items += item
-    print("Total number of items: ", number_of_items)
-
-
 def display_head():
+    """Displays head of boss"""
     x = open("head.txt", "r")
     for line in x:
         cprint(line, "yellow", end='')
 
+
 def display_credits():
+    """Displays credits"""
     x = open("credits.txt", "r+")
     for line in x:
         print(line, end='')
 
+
 def display_help():
+    """Displays help"""
     x = open("help.txt", "r+")
     for line in x:
         print(line, end='')
 
+
 def menu():
+    """Displays main menu of the game"""
     global save
     os.system("clear")
     while True:
@@ -149,7 +114,10 @@ def menu():
         elif answer == "4":
             # load()
             save = 1
-            input("LOAD")
+            print(BGBLUE+BOLD+UNDERLINE, end="")
+            print("LOADING SAVED GAME")
+            print(ENDC, end="")
+            input()
             return "load"
         elif answer == "5":
             cprint("\n Goodbye!\n", "red", attrs=['bold'])
@@ -158,22 +126,18 @@ def menu():
             cprint("\n Wrong input. Try again!", "green")
 
 
-def export_inventory(inventory, filename="import_inventory.csv"):
-    """Exports current inventory to file"""
-    with open(filename, "w", encoding="utf-8") as handler:
-        handler.write("item_name,count\n")
-        for key, value in inventory.items():
-            handler.write(key+","+str(value)+"\n")
-
 def random_loot():
-    loot = random.sample(inv,3)
-    print(BGBLUE+BOLD+UNDERLINE, end="")# print(BGBLUE, end="")
+    """Generates random 3 items for player"""
+    loot = random.sample(inv, 3)
+    print(BGBLUE+BOLD+UNDERLINE, end="")
     print("You've found {}, {} and {}! Hit Enter".format(loot[0][0], loot[1][0], loot[2][0]))
     print(ENDC, end="")
     input()
     return loot
 
+
 def getch():
+    """Waits for character input from console and returns it"""
     import sys, tty, termios
     fd = sys.stdin.fileno()
     old_settings = termios.tcgetattr(fd)
@@ -186,12 +150,15 @@ def getch():
 
 
 def ret_matrix(matrix, hero_row, hero_col):
+    """Set position of player"""
     matrix[hero_row][hero_col] = "👹"
     return matrix
 
+
 def import_matrix(stage_number=1):
+    """Imports map based on stage number"""
     matrix = []
-    with open(str(stage_number)+".txt","r") as handler:
+    with open(str(stage_number)+".txt", "r") as handler:
         imported_data = handler.readlines()
     imported_data = [s.replace('\n', '') for s in imported_data]
     for data_row in imported_data:
@@ -201,29 +168,24 @@ def import_matrix(stage_number=1):
         matrix.append(string)
     for row in range(2, len(matrix)-2):
         for col in range(2, len(matrix[0])-2):
-            if random.randint(0,200)<2:
+            if random.randint(0, 200) < 2:
                 matrix[row][col] = "🏆"
     return matrix
 
+
 def cls():
     """Clears terminal"""
-    os.system('cls' if os.name=='nt' else 'clear')
+    os.system('cls' if os.name == 'nt' else 'clear')
 
-# def print_matrix(matrix):
-#     for item in matrix:
-#         #item = [s.strip('\n') for s in item]
-#         #item = [s.strip('') for s in item]
-#         for char in item:
-#             if char == "䷀":
-#                 print("{}".format(char), end="")
-#             else:
-#                 print(char, end="")
 
 def print_matrix(matrix):
-     for item in matrix:
-         print(''.join(item))
+    """Displays map on the screen"""
+    for item in matrix:
+        print(''.join(item))
+
 
 def stats():
+    """Prints random characteristic for player toon"""
     os.system('clear')
     print('GOD OF LUCK gave you your stats:')
     print("--------------------------------")
@@ -237,6 +199,7 @@ def stats():
 
 
 def inside_stats_generate():
+    """Generates random characteristic for player toon"""
     st = [['STRENGHT', 10 + random.randint(0, 10)],
           ['AGILITY:', 10 + random.randint(0, 10)],
           ['DEXTERITY:', 10 + random.randint(0, 10)],
@@ -249,6 +212,7 @@ def inside_stats_generate():
 
 
 def inside_stats_ask(st):
+    """Gives feedback for player about hes statistics and ask for reroll"""
     reroll = input('Reroll? (y/n)')
     reroll = reroll.lower()
 
@@ -287,22 +251,20 @@ def inside_stats_ask(st):
         return inside_stats_ask()
 
 
-def random_start():
-    positionx = random.randint(150)
-    positiony = random.randint(10)+30
-    return positionx, positiony
-
 def ask_name():
+    """Asks player for hes name"""
     ask = "##########"
     spaces = 0
-    while len(ask)>8:
+    while len(ask) > 8:
         ask = input("Type name for your character (max 8 char): ")
     spaces = 8 - len(ask)
     ask += " "*spaces
     return ask
 
+
 def load(matrix, hero_name, hero_row, hero_col, statistics, inv, stage_number, lives):
-    with open ("save","rb") as handler:
+    """Loads all needed parameters from file to make proper load"""
+    with open("save", "rb") as handler:
         matrix = pickle.load(handler)
         hero_name = pickle.load(handler)
         hero_row = pickle.load(handler)
@@ -313,8 +275,10 @@ def load(matrix, hero_name, hero_row, hero_col, statistics, inv, stage_number, l
         lives = pickle.load(handler)
         return matrix, hero_name, hero_row, hero_col, statistics, inv, stage_number, lives
 
+
 def save_game(matrix, hero_name, hero_row, hero_col, statistics, inv, stage_number, lives):
-    with open("save","wb") as handler:
+    """Saves all needed parameters to file to make proper save"""
+    with open("save", "wb") as handler:
         pickle.dump(matrix, handler)
         pickle.dump(hero_name, handler)
         pickle.dump(hero_row, handler)
@@ -325,7 +289,6 @@ def save_game(matrix, hero_name, hero_row, hero_col, statistics, inv, stage_numb
         pickle.dump(lives, handler)
 
 
-#import_inventory(inv)
 def main():
     global lives
     global save
@@ -407,9 +370,13 @@ def main():
             matrix[hero_row+1][hero_col] = "🞮"
         elif char == "m":
             save_game(matrix, hero_name, hero_row, hero_col, statistics, inv, stage_number, lives)
+            print(BGBLUE+BOLD+UNDERLINE, end="")
+            print("SAVING GAME ... Enter")
+            print(ENDC, end="")
+            input()
             main()
         elif (char == "q"):
-            break
+            exit()
         else:
             pass
 
