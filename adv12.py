@@ -113,12 +113,12 @@ def menu():
             os.system("clear")
             display_help()
             input("\nPress any key for back to menu.")
-            menu()
+            main()
         elif answer == "3":
             os.system("clear")
             display_credits()
             input("\nPress any key for back to menu.")
-            menu()
+            main()
         elif answer == "4":
             # load()
             save = 1
